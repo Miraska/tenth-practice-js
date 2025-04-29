@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Модальное окно и вкладки</title>
     <style>
-        /* Общие стили */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -26,7 +25,6 @@
             padding: 20px;
         }
         
-        /* Стили для кнопки открытия модального окна */
         .open-modal-btn {
             background-color: #4a6bff;
             color: white;
@@ -45,7 +43,6 @@
             box-shadow: 0 4px 12px rgba(74, 107, 255, 0.4);
         }
         
-        /* Стили модального окна */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -150,7 +147,6 @@
             background-color: #e0e0e0;
         }
         
-        /* Стили вкладок */
         .tabs-container {
             margin-top: 40px;
             background-color: white;
@@ -258,7 +254,6 @@
         </div>
     </div>
     
-    <!-- Модальное окно -->
     <div class="modal-overlay">
         <div class="modal">
             <div class="modal-header">
@@ -277,22 +272,20 @@
     </div>
     
     <script>
-        // Модальное окно
         const modal = document.querySelector('.modal-overlay');
         const openModalBtn = document.querySelector('.open-modal-btn');
         const closeModalBtn = document.querySelector('.close-btn');
         
         openModalBtn.addEventListener('click', () => {
             modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Блокируем скролл страницы
+            document.body.style.overflow = 'hidden'; 
         });
         
         closeModalBtn.addEventListener('click', () => {
             modal.classList.remove('active');
-            document.body.style.overflow = ''; // Восстанавливаем скролл
+            document.body.style.overflow = ''; 
         });
         
-        // Закрытие модального окна при клике на оверлей
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.classList.remove('active');
@@ -300,7 +293,6 @@
             }
         });
         
-        // Закрытие модального окна при нажатии Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && modal.classList.contains('active')) {
                 modal.classList.remove('active');
@@ -308,20 +300,16 @@
             }
         });
         
-        // Система вкладок
         const tabButtons = document.querySelectorAll('.tab-btn');
         const tabPanes = document.querySelectorAll('.tab-pane');
         
         tabButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Удаляем активный класс у всех кнопок и панелей
                 tabButtons.forEach(btn => btn.classList.remove('active'));
                 tabPanes.forEach(pane => pane.classList.remove('active'));
                 
-                // Добавляем активный класс текущей кнопке
                 button.classList.add('active');
                 
-                // Находим соответствующую панель и делаем её активной
                 const tabId = button.getAttribute('data-tab');
                 document.getElementById(tabId).classList.add('active');
             });
